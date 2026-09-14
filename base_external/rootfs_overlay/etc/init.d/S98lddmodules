@@ -2,17 +2,28 @@
 case "$1" in
   start)
     echo "Loading custom Linux driver module(s)"
-  	/etc/misc-modules/module_load
-  	/etc/scull/scull_load
+    # /etc/misc-modules/module_load faulty
+    # /etc/misc-modules/module_load hello
+    # /etc/scull/scull_load scull
+    cd /etc/misc-modules
+  	./module_load faulty
+  	./module_load hello
+
+  	echo "Loading custom scull module"
+  	cd /etc/scull
+    ./scull_load scull
     ;;
   stop)
     echo "Unloading custom Linux driver module(s)"
-  	/etc/misc-modules/module_unload
-  	/etc/scull/scull_unload
+  	/etc/misc-modules/module_unload faulty
+  	/etc/misc-modules/module_unload hello
+  	/etc/scull/scull_unload scull
     ;;
   *)
     echo "Usage $0 {start|stop}"
     exit 1
 esac
 
-modprobe hello
+# modprobe faulty
+# modprobe hello
+# modprobe scull
