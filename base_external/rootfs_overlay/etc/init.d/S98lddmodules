@@ -1,0 +1,20 @@
+#!/bin/sh
+case "$1" in
+  start)
+    echo "Loading custom Linux driver module(s)"
+  	# insmod /etc/misc-modules/hello.ko
+  	# insmod /etc/scull/scull.ko
+  	/etc/misc-modules/module_load
+  	/etc/scull/scull_load
+    ;;
+  stop)
+    echo "Unloading custom Linux driver module(s)"
+  	# rmmod /etc/misc-modules/hello.ko
+  	# rmmod /etc/scull/scull.ko
+  	/etc/misc-modules/module_unload
+  	/etc/scull/scull_unload
+    ;;
+  *)
+    echo "Usage $0 {start|stop}"
+    exit 1
+esac
