@@ -17,8 +17,6 @@ jobs:
               sudo apt-get update
               sudo apt-get install --reinstall -y \
                 fakeroot \
-                # fakeroot-sysv \
-                libfakeroot \
                 "linux-headers-$(uname -r)" \
                 build-essential gcc-12
               sudo ldconfig
