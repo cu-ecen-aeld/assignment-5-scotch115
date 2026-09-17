@@ -13,10 +13,14 @@ jobs:
         steps:
           - name: Install kernel headers
             run: |
+              set -eux
               sudo apt-get update
-              sudo apt-get install -y\
+              sudo apt-get install --reinstall -y \
+                fakeroot \
+                fakeroot-sysv \
+                libfakeroot \
                 "linux-headers-$(uname -r)" \
-                build-essential gcc-12 fakeroot
+                build-essential gcc-12
               sudo ldconfig
           - name: Verify kernel header directory
             run: |
@@ -24,6 +28,8 @@ jobs:
               test -d "/lib/modules/$(uname -r)/build"
               ls -ld "/lib/modules/$(uname -r)/build"
               gcc --version
+              unset LD_LIBRARY_PATH
+              unset FAKEROOT_LIB
               fakeroot true
           - uses: actions/checkout@v2
           - name: Checkout submodules
