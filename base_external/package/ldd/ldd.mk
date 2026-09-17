@@ -6,7 +6,7 @@
 ##############################################################
 
 # TODO: Update with assignment 7 git repo hash
-LDD_VERSION = 'af5b19f0f542cc433c58a13d7b95c19636820013'
+LDD_VERSION = '22fdc0d1aac29cd1980b1cd93706bbfc72049a2f'
 LDD_SITE = 'git@github.com:scotch115/aeld-assignment-7.git'
 LDD_SITE_METHOD = git
 LDD_GIT_SUBMODULES = YES
@@ -26,6 +26,7 @@ endef
 define LDD_INSTALL_TARGET_CMDS
 	$(INSTALL) -d 0755 $(@D)/misc-modules/ $(TARGET_DIR)/etc/misc-modules
 	$(INSTALL) -d 0755 $(@D)/scull/ $(TARGET_DIR)/etc/scull
+	$(INSTALL) -m 0755 $(@D)/load-ldd.sh $(TARGET_DIR)/etc/init.d/S98lddmodules
 
 	$(INSTALL) -m 0755 $(@D)/misc-modules/*.ko $(TARGET_DIR)/etc/misc-modules
 	$(INSTALL) -m 0755 $(@D)/misc-modules/*.o $(TARGET_DIR)/etc/misc-modules
