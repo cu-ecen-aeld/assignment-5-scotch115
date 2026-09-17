@@ -11,6 +11,17 @@ jobs:
         runs-on: self-hosted
         timeout-minutes: 120
         steps:
+          - name: Install kernel headers
+            run: |
+              sudo apt-get update
+              sudo apt-get install -y\
+                "linux-headers-$(uname -r)" \
+                build-essential
+          - name: Verify kernel header directory
+            run: |
+              uname -r
+              test -d "/lib/modules/$(uname -r)/build"
+              ls -ld "/lib/modules/$(uname -r)/build"
           - uses: actions/checkout@v2
           - name: Checkout submodules
             run: git submodule update --init --recursive
